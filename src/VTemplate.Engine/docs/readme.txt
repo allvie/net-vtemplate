@@ -10,4 +10,4 @@ LGPL开源协议:http://www.opensource.org/licenses/lgpl-license.php
 项目托管：
 VTemplate项目托管在Google code上。
 URL: http://net-vtemplate.googlecode.com/
-SVN: http://net-vtemplate.googlecode.com/svn/
+SVN: http://net-vtemplate.googlecode.com/svn/src/VTemplate.Engine/
