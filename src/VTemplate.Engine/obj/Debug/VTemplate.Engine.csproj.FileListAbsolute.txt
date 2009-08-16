@@ -1,0 +1,15 @@
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\TemplateEngine\bin\Debug\VTemplate.Engine.dll
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\TemplateEngine\bin\Debug\VTemplate.Engine.pdb
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\TemplateEngine\obj\Debug\ResolveAssemblyReference.cache
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\TemplateEngine\obj\Debug\VTemplate.Engine.dll
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\TemplateEngine\obj\Debug\VTemplate.Engine.pdb
+I:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\bin\Debug\VTemplate.Engine.dll
+I:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\bin\Debug\VTemplate.Engine.pdb
+I:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\obj\Debug\ResolveAssemblyReference.cache
+I:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\obj\Debug\VTemplate.Engine.dll
+I:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\obj\Debug\VTemplate.Engine.pdb
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\bin\Debug\VTemplate.Engine.dll
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\bin\Debug\VTemplate.Engine.pdb
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\obj\Debug\ResolveAssemblyReference.cache
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\obj\Debug\VTemplate.Engine.dll
+G:\项目\NET项目\C#\VS2008\VTemplateSolution\VTemplate.Engine\obj\Debug\VTemplate.Engine.pdb
