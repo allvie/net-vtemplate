@@ -1,5 +1,6 @@
 ﻿作者：kingthy
 邮件：kingthy@gmail.com
+博客: http://www.cnblogs.com/kingthy/
 
 使用许可：
 VTemplate模版引擎采用LGPL开源许可协议，因此您可以自由修改源代码但也必须将修改后的代码以LGPL协议开源；或你可通过第三方库文件引用方式集成在您的商业程序中而不需要公布您的商业程序代码。
