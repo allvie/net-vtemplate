@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Collections;
 using System.Drawing;
 using System.Reflection;
+using System.Collections.Specialized;
 
 namespace VTemplate.Engine
 {
@@ -244,7 +245,8 @@ namespace VTemplate.Engine
         /// <returns>属性值</returns>
         internal static object GetPropertyValue(object container, string propName, out bool exist)
         {
-            exist = true;
+            exist = false;
+            object value = null;
             if (container == null)
             {
                 throw new ArgumentNullException("container");
@@ -256,14 +258,32 @@ namespace VTemplate.Engine
             PropertyDescriptor descriptor = TypeDescriptor.GetProperties(container).Find(propName, true);
             if (descriptor != null)
             {
-                return descriptor.GetValue(container);
+                exist = true;
+                value = descriptor.GetValue(container);
             }
-            else
+            else if (container is IDictionary)
             {
-                //不存在此值
-                exist = false;
-                return null;
+                //是IDictionary集合
+                IDictionary idic = (IDictionary)container;
+                if (idic.Contains(propName))
+                {
+                    exist = true;
+                    value = idic[propName];
+                }
             }
+            else if (container is NameObjectCollectionBase)
+            {
+                //是NameObjectCollectionBase派生对象
+                NameObjectCollectionBase nob = (NameObjectCollectionBase)container;
+                //调用私有方法
+                MethodInfo method = nob.GetType().GetMethod("BaseGet", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance, null, new Type[] { typeof(string) }, new ParameterModifier[] { new ParameterModifier(1) });
+                if (method != null)
+                {
+                    value = method.Invoke(container, new object[] { propName });
+                    exist = value == null;
+                }
+            }
+            return value;
         }
         /// <summary>
         /// 获取方法的结果值
