@@ -60,6 +60,9 @@
     <Compile Include="varexp_test.ashx.cs">
       <DependentUpon>varexp_test.ashx</DependentUpon>
     </Compile>
+    <Compile Include="serverdatatag_test.ashx.cs">
+      <DependentUpon>serverdatatag_test.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VTemplate.Engine\VTemplate.Engine.csproj">
@@ -86,6 +89,10 @@
   <ItemGroup>
     <Content Include="template\varexp_test.html" />
     <Content Include="varexp_test.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="serverdatatag_test.ashx" />
+    <Content Include="template\serverdatatag_test.html" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
