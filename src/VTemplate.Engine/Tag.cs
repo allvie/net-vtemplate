@@ -65,6 +65,7 @@ namespace VTemplate.Engine
         /// 标签的名称
         /// </summary>
         public string Name { get; protected set; }
+
         /// <summary>
         /// 此标签包含的子元素集合
         /// </summary>
@@ -105,6 +106,18 @@ namespace VTemplate.Engine
         /// <param name="item"></param>
         protected virtual void OnAddingAttribute(string name, Attribute item)
         {
+        }
+        #endregion
+
+        #region 添加子元素
+        /// <summary>
+        /// 添加子元素
+        /// </summary>
+        /// <param name="element"></param>
+        internal virtual void AppendChild(Element element)
+        {
+            element.Parent = this;
+            this.InnerElements.Add(element);
         }
         #endregion
 
@@ -204,7 +217,7 @@ namespace VTemplate.Engine
         /// <returns>如果需要继续处理EndTag则返回true.否则请返回false</returns>
         internal virtual bool ProcessBeginTag(Template ownerTemplate, Tag container, Stack<Tag> tagStack, string text, ref Match match, bool isClosedTag)
         {
-            container.InnerElements.Add(this);
+            container.AppendChild(this);
             return !isClosedTag;
         }
         #endregion

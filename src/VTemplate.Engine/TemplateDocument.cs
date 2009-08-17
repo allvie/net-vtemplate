@@ -69,7 +69,7 @@ namespace VTemplate.Engine
         /// <param name="text"></param>
         internal TemplateDocument(Template documentElement, Tag container, string text)
         {
-            this.InnerElements.Add(documentElement);
+            this.AppendChild(documentElement);
             this.ChildTemplates.Add(documentElement);
             this.ParseString(documentElement, container, text);
         }
@@ -296,7 +296,7 @@ namespace VTemplate.Engine
             foreach (Element element in this.InnerElements)
             {
                 Element item = element.Clone(tag);
-                tag.InnerElements.Add(item);
+                tag.AppendChild(item);
                 if (item is Template)
                 {
                     //加入子模版列表
