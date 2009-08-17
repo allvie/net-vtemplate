@@ -115,7 +115,7 @@ namespace VTemplate.Engine
             tag.Expression = this.Expression;
             foreach (Element element in this.InnerElements)
             {
-                tag.InnerElements.Add(element.Clone(ownerTemplate));
+                tag.AppendChild(element.Clone(ownerTemplate));
             }
             return tag;
         }

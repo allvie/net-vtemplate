@@ -257,7 +257,7 @@ namespace VTemplate.Engine
             //将自身加入到宿主的子模版列表中
             ownerTemplate.ChildTemplates.Add(this);
             //加入到标签容器的元素列表中
-            container.InnerElements.Add(this);
+            container.AppendChild(this);
             
             if (!string.IsNullOrEmpty(this.File) && System.IO.File.Exists(this.File))
             {
@@ -302,7 +302,7 @@ namespace VTemplate.Engine
             foreach (Element element in this.InnerElements)
             {
                 Element item = element.Clone(tag);
-                tag.InnerElements.Add(item);
+                tag.AppendChild(item);
                 if (item is Template)
                 {
                     //加入子模版列表

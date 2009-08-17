@@ -93,7 +93,7 @@ namespace VTemplate.Engine
             tag.Attributes = this.Attributes;
             foreach (Element element in this.InnerElements)
             {
-                tag.InnerElements.Add(element.Clone(ownerTemplate));
+                tag.AppendChild(element.Clone(ownerTemplate));
             }
             return tag;
         }

@@ -90,7 +90,7 @@ namespace VTemplate.Engine
         /// <returns>如果需要继续处理EndTag则返回true.否则请返回false</returns>
         internal override bool ProcessBeginTag(Template ownerTemplate, Tag container, Stack<Tag> tagStack, string text, ref Match match, bool isClosedTag)
         {
-            container.InnerElements.Add(this);
+            container.AppendChild(this);
             if (!string.IsNullOrEmpty(this.File) && System.IO.File.Exists(this.File))
             {
                 //解析数据
@@ -116,7 +116,7 @@ namespace VTemplate.Engine
             tag.Charset = this.Charset;
             foreach (Element element in this.InnerElements)
             {
-                tag.InnerElements.Add(element.Clone(ownerTemplate));
+                tag.AppendChild(element.Clone(ownerTemplate));
             }
             return tag;
         }

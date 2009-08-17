@@ -52,7 +52,7 @@ namespace VTemplate.Engine
         {
             if (length > 0)
             {
-                container.InnerElements.Add(new TextNode(ownerTemplate, text.Substring(offset, length)));
+                container.AppendChild(new TextNode(ownerTemplate, text.Substring(offset, length)));
             }
         }
 
@@ -164,7 +164,7 @@ namespace VTemplate.Engine
             VariableTag tag = new VariableTag(ownerTemplate, varExp);
             //解析属性列表
             ParseElementAttributes(tag, match);
-            container.InnerElements.Add(tag);
+            container.AppendChild(tag);
 
             return tag;
         }

@@ -35,9 +35,33 @@ namespace VTemplate.Engine
         public ElementCollection<IfConditionTag> ElseIfs { get; protected set; }
 
         /// <summary>
-        /// Else节点列表
+        /// Else节点
         /// </summary>
-        public ElseTag Else { get; internal set; }
+        private ElseTag _Else;
+        /// <summary>
+        /// Else节点
+        /// </summary>
+        public ElseTag Else
+        {
+            get { return _Else; }
+            internal set
+            {
+                if (value != null) value.Parent = this;
+                _Else = value;
+            }
+        }
+        #endregion
+
+        #region 方法定义
+        /// <summary>
+        /// 添加条件
+        /// </summary>
+        /// <param name="conditionTag"></param>
+        internal virtual void AddElseCondition(IfConditionTag conditionTag)
+        {
+            conditionTag.Parent = this;
+            this.ElseIfs.Add(conditionTag);
+        }
         #endregion
 
         #region 重写Tag的方法
@@ -196,7 +220,7 @@ namespace VTemplate.Engine
             //闭合标签则不进行数据处理
             if (!isClosedTag)
             {
-                container.InnerElements.Add(this);
+                container.AppendChild(this);
             }
             return !isClosedTag;
         }
@@ -218,6 +242,7 @@ namespace VTemplate.Engine
             tag.Expression = this.Expression;
             tag.VarExpression = this.VarExpression == null ? null : (VariableExpression)(this.VarExpression.Clone(ownerTemplate));
             tag.Else = this.Else == null ? null : (ElseTag)(this.Else.Clone(ownerTemplate));
+
             if (this.Values != null)
             {
                 foreach (IExpression exp in this.Values)
@@ -227,11 +252,11 @@ namespace VTemplate.Engine
             }
             foreach (IfConditionTag elseTag in this.ElseIfs)
             {
-                tag.ElseIfs.Add((IfConditionTag)elseTag.Clone(ownerTemplate));
+                tag.AddElseCondition((IfConditionTag)elseTag.Clone(ownerTemplate));
             }
             foreach (Element element in this.InnerElements)
             {
-                tag.InnerElements.Add(element.Clone(ownerTemplate));
+                tag.AppendChild(element.Clone(ownerTemplate));
             }
             return tag;
         }

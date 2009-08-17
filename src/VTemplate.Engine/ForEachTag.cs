@@ -119,7 +119,19 @@ namespace VTemplate.Engine
         /// <summary>
         /// ForEachElse节点
         /// </summary>
-        public ForEachElseTag Else { get; internal set; }
+        private ForEachElseTag _Else;
+        /// <summary>
+        /// ForEachElse节点
+        /// </summary>
+        public ForEachElseTag Else
+        {
+            get { return _Else; }
+            internal set
+            {
+                if (value != null) value.Parent = this;
+                _Else = value;
+            }
+        }
         #endregion
 
         #region 添加标签属性时的触发函数.用于设置自身的某些属性值
@@ -218,8 +230,9 @@ namespace VTemplate.Engine
 
             foreach (Element element in this.InnerElements)
             {
-                tag.InnerElements.Add(element.Clone(ownerTemplate));
+                tag.AppendChild(element.Clone(ownerTemplate));
             }
+
             return tag;
         }
         #endregion

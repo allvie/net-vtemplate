@@ -333,7 +333,7 @@ namespace VTemplate.Engine
             if (this.VarExpression == null) this.VarExpression = ifTag.VarExpression;
 
             //加入到If标签的ElseIf队列
-            ifTag.ElseIfs.Add(this);
+            ifTag.AddElseCondition(this);
 
             return true;
         }
@@ -360,7 +360,7 @@ namespace VTemplate.Engine
             }
             foreach (Element element in this.InnerElements)
             {
-                tag.InnerElements.Add(element.Clone(ownerTemplate));
+                tag.AppendChild(element.Clone(ownerTemplate));
             }
             return tag;
         }

@@ -30,6 +30,12 @@ namespace VTemplate.Engine
         /// 此元素的宿主模版
         /// </summary>
         public Template OwnerTemplate { get; protected set; }
+
+        /// <summary>
+        /// 此元素的父级标签
+        /// </summary>
+        public Tag Parent { get; internal set; }
+
         /// <summary>
         /// 呈现本元素的数据
         /// </summary>
