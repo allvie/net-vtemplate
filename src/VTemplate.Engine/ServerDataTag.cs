@@ -63,10 +63,14 @@ namespace VTemplate.Engine
         /// <summary>
         /// 服务器当前上下文的HttpRequest对象.如果模版引擎不在Web程序上使用则无效
         /// </summary>
-        Request
+        Request,
+        /// <summary>
+        /// 服务器系统平台
+        /// </summary>
+        Environment
     }
     /// <summary>
-    /// 服务器数据标签,.如: &lt;vt:serverdata var="uri" type="time" /&gt;
+    /// 服务器数据标签,.如: &lt;vt:serverdata var="request" type="request" /&gt;
     /// </summary>
     [Serializable]
     public class ServerDataTag : Tag
@@ -240,6 +244,8 @@ namespace VTemplate.Engine
                     return GetRequestServerVariablesItem();
                 case ServerDataType.Request:
                     return GetRequestItem();
+                case ServerDataType.Environment:
+                    return typeof(System.Environment);
                 default:
                     return null;
             }

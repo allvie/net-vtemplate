@@ -283,6 +283,37 @@ namespace VTemplate.Engine
                     exist = value == null;
                 }
             }
+            else if (container is Type)
+            {
+                Type type = (Type)container;
+                //查找字段
+                FieldInfo field = type.GetField(propName, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
+                if (field != null)
+                {
+                    exist = true;
+                    value = field.GetValue(container);
+                }
+                else
+                {
+                    //查找属性
+                    PropertyInfo property = type.GetProperty(propName, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.IgnoreCase, null, null, new Type[0], new ParameterModifier[0]);
+                    if (property != null)
+                    {
+                        exist = true;
+                        value = property.GetValue(container, null);
+                    }
+                    else
+                    {
+                        //查找方法
+                        MethodInfo method = type.GetMethod(propName, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.IgnoreCase, null, new Type[0], new ParameterModifier[0]);
+                        if (method != null)
+                        {
+                            value = method.Invoke(container, null);
+                            exist = value == null;
+                        }
+                    }
+                }
+            }
             return value;
         }
         /// <summary>
@@ -303,9 +334,10 @@ namespace VTemplate.Engine
             {
                 throw new ArgumentNullException("methodName");
             }
+            Type type = (container is Type ? (Type)container : container.GetType());
             MethodInfo method = container.GetType().GetMethod(methodName, BindingFlags.Static | BindingFlags.Instance
                                                                           | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.IgnoreCase,
-                                                                          null, CallingConventions.Any, new Type[0], new ParameterModifier[0]);
+                                                                          null, new Type[0], new ParameterModifier[0]);
             if (method != null)
             {
                 return method.Invoke(method.IsStatic ? null : container, null);
