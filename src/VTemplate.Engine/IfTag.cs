@@ -215,7 +215,7 @@ namespace VTemplate.Engine
         internal override bool ProcessBeginTag(Template ownerTemplate, Tag container, Stack<Tag> tagStack, string text, ref Match match, bool isClosedTag)
         {
             if (this.VarExpression == null) throw new ParserException(string.Format("{0}标签中缺少var属性", this.TagName));
-            if (this.Values == null) throw new ParserException(string.Format("{0}标签中缺少value属性", this.TagName));
+            if (this.Values.Count == 0) throw new ParserException(string.Format("{0}标签中缺少value属性", this.TagName));
 
             //闭合标签则不进行数据处理
             if (!isClosedTag)

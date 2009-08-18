@@ -323,7 +323,7 @@ namespace VTemplate.Engine
         /// <returns>如果需要继续处理EndTag则返回true.否则请返回false</returns>
         internal override bool ProcessBeginTag(Template ownerTemplate, Tag container, Stack<Tag> tagStack, string text, ref Match match, bool isClosedTag)
         {
-            if (this.Values == null) throw new ParserException(string.Format("{0}标签中缺少value属性", this.TagName));
+            if (this.Values.Count == 0) throw new ParserException(string.Format("{0}标签中缺少value属性", this.TagName));
 
             //判断标签的容器是否为IfTag标签
             if (!(container is IfTag)) throw new ParserException(string.Format("未找到和{0}标签对应的{1}标签", this.TagName, this.EndTagName));
